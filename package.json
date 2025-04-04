@@ -16,11 +16,12 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
-    "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-native-async-storage/async-storage": "^1.24.0",
     "@react-navigation/bottom-tabs": "^7.0.5",
     "@react-navigation/drawer": "^7.0.0",
     "@react-navigation/native": "^7.0.3",
-    "@supabase/supabase-js": "^2.38.4",
+    "@rneui/themed": "^4.0.0-rc.8",
+    "@supabase/supabase-js": "^2.49.4",
     "expo": "^52.0.40",
     "expo-constants": "~17.0.8",
     "expo-dev-client": "~5.0.4",
@@ -47,8 +48,9 @@
     "@typescript-eslint/parser": "^7.7.0",
     "eslint": "^8.57.0",
     "eslint-config-universe": "^12.0.1",
-    "prettier": "^3.2.5",
-    "typescript": "~5.3.3"
+    "prettier": "^3.5.3",
+    "typescript": "~5.3.3",
+    "@react-native-community/cli": "latest"
   },
   "eslintConfig": {
     "extends": "universe/native",

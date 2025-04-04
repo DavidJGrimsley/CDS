@@ -3,7 +3,6 @@
     "name": "ClaytonDesignAndSalvage",
     "slug": "ClaytonDesignAndSalvage",
     "version": "1.0.0",
-
     "scheme": "ClaytonDesignAndSalvage",
     "web": {
       "bundler": "metro",
@@ -21,15 +20,11 @@
     ],
     "experiments": {
       "typedRoutes": true,
-
       "tsconfigPaths": true
     },
-
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-
     "userInterfaceStyle": "light",
-
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -37,12 +32,25 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.claytondesignandsalvage.storefront",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.mrdj2u.ClaytonDesignAndSalvage"
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "a6c6edde-9c70-4074-99c8-b0bc9d0b598b"
       }
     }
   }
