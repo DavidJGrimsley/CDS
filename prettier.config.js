@@ -5,3 +5,4 @@ module.exports = {
   bracketSameLine: true,
   trailingComma: "es5",
 };
+

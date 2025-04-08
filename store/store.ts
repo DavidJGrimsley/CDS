@@ -13,3 +13,4 @@ export const useStore = create<BearState>((set) => ({
   removeAllBears: () => set({ bears: 0 }),
   updateBears: (newBears) => set({ bears: newBears }),
 }));
+
