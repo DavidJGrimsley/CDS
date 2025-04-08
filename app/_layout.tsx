@@ -1,12 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
 import { Stack } from "expo-router";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, Button, View } from "react-native";
+import { ActivityIndicator } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-
-export const unstable_settings = {
-  initialRouteName: "(drawer)",
-};
 
 const supabase = createClient(
   "https://byyxwnrmmbfcmcsnduyt.supabase.co",
@@ -16,60 +12,60 @@ const supabase = createClient(
 export default function RootLayout() {
   const [userRole, setUserRole] = useState<null | "backend" | "frontend">(null);
   const [loading, setLoading] = useState(true);
+  
+  // log user into backend
+  // useEffect(() => {
+  //   setUserRole("backend");
+  //   setLoading(false);
+  // }, [userRole]);
+  
+  // log user into frontend
+  // useEffect(() => {
+  //   setUserRole("frontend");
+  //   setLoading(false);
+  // }, [userRole]);
+  
 
   useEffect(() => {
     const fetchUser = async () => {
       const { data } = await supabase.auth.getSession();
+      console.log("🚀 ~ fetchUser ~ data:", data)
       if (data?.session?.user) {
         const { role } = data.session.user.user_metadata || {};
+        console.log("🚀 ~ fetchUser !MetaData! ~ role:", role)
         if (role === "backend") {
           setUserRole("backend");
+          console.log("🚀 inside userRole:", userRole)
         } else {
           setUserRole("frontend"); // Default to frontend for all other users
+          console.log("🚀 inside userRole:", userRole)
         }
       } else {
-        setUserRole("frontend"); // Default to frontend if not logged in
+        setUserRole(null); // User is not logged in
+        console.log("🚀 inside NoData/User userRole:", userRole)
       }
       setLoading(false);
     };
-
     fetchUser();
   }, []);
-
-  if (loading) {
-    return (
-      <GestureHandlerRootView
-        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-      >
-        <ActivityIndicator size="large" color="#0000ff" />
-      </GestureHandlerRootView>
-    );
-  }
+  console.log("🚀 outside userRole:", userRole)
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      {userRole === "backend" ? (
+    <GestureHandlerRootView key={userRole} style={{ flex: 1 }}>
+      {loading ? (
+        <ActivityIndicator size="large" color="#0000ff" />
+      ) : userRole === "backend" ? (
         <Stack>
-          <Stack.Screen
-            name="backend"
-            options={{ title: "Backend Dashboard" }}
-          />
+          <Stack.Screen name="(backend)" options={{ headerShown: false }} />
         </Stack>
       ) : (
         <Stack>
-          <Stack.Screen
-            name="(drawer)"
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="modal"
-            options={{ title: "Modal", presentation: "modal" }}
-          />
-          <Stack.Screen name="login" options={{ title: "Login" }} />
+          <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
         </Stack>
       )}
     </GestureHandlerRootView>
   );
 }
+
+
+// "{added basic folder structure for backend but after adding the login screen, I am met with the 'no window' error.}"

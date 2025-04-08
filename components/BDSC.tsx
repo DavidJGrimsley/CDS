@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
+import globalStyles from "../styles/globalStyles";
 
-import EditScreenInfo from "./EditScreenInfo";
 
 type ScreenContentProps = {
   title: string;
@@ -8,7 +8,7 @@ type ScreenContentProps = {
   children?: React.ReactNode;
 };
 
-export const ScreenContent = ({
+export const BackDoorScreenContent = ({
   title,
   path,
   children,
